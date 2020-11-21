@@ -8,6 +8,7 @@ const Balance = () => {
 
   const [amount, setAmount] = useState('');
   const [message, setMessage] = useState('');
+  const [messageToken, setMessageToken] = useState('');
   const [phone, setPhone] = useState('');
   const [document, setDocument] = useState('');
   const [token, setToken] = useState('');
@@ -80,7 +81,8 @@ const Balance = () => {
           if (data) {
             //set cookie
             setSignupErrorToken('')
-            Router.push('/');
+            setMessageToken(data.success)
+            // Router.push('/');
             
           }
 
@@ -136,6 +138,7 @@ const Balance = () => {
       <br/>
 
       {signupErrorToken && <p className="text-center" style={{color: 'red'}}>{signupErrorToken}</p>}
+      {messageToken && <p className="text-center" style={{color: 'green'}}>{messageToken}</p>}
 
 
       <br/>

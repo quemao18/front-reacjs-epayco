@@ -1,7 +1,8 @@
 import * as functions from 'firebase-functions';
 import { Request, Response } from 'express';
 
-const apiUrl = 'http://localhost:8000';
+// const apiUrl = 'http://localhost:8000';
+const apiUrl = 'https://epayco.novemapp.com';
 
 const express = require('express');
 const cors = require('cors');
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Automatically allow cross-origin requests
-app.use(cors({ origin: true }));
+app.use(cors());
 
 // Add middleware to authenticate requests
 // app.use(myMiddleware);
@@ -41,7 +42,7 @@ app.post('/register', function(req: Request, res: Response){
         { 
         method: 'POST', 
         uri: apiUrl + '/register',
-        headers: {'X_SITE_API_KEY': req.get('X_SITE_API_KEY')},
+        headers: {'X-Site-Api-Key': req.get('X_SITE_API_KEY')},
         body: req.body,
         json: true
         }
@@ -58,7 +59,7 @@ app.post('/balance', function(req: Request, res: Response){
         { 
         method: 'POST', 
         uri: apiUrl + '/balance',
-        headers: {'X_SITE_API_KEY': req.get('X_SITE_API_KEY')},
+        headers: {'X-Site-Api-Key': req.get('X_SITE_API_KEY')},
         body: req.body,
         json: true
         }
@@ -75,7 +76,7 @@ app.post('/wallet/add', function(req: Request, res: Response){
         { 
         method: 'POST', 
         uri: apiUrl + '/wallet/add',
-        headers: {'X_SITE_API_KEY': req.get('X_SITE_API_KEY')},
+        headers: {'X-Site-Api-Key': req.get('X_SITE_API_KEY')},
         body: req.body,
         json: true
         }
@@ -93,8 +94,8 @@ app.post('/wallet/send', function(req: Request, res: Response){
         method: 'POST', 
         uri: apiUrl + '/wallet/send',
         headers: {
-            'X_SITE_API_KEY': req.get('X_SITE_API_KEY'), 
-            'X_SITE_AUTH_TOKEN': req.get('X_SITE_AUTH_TOKEN')},
+            'X-Site-Api-Key': req.get('X_SITE_API_KEY'), 
+            'X-Site-Auth-Token': req.get('X_SITE_AUTH_TOKEN')},
         body: req.body,
         json: true
         }
@@ -112,7 +113,7 @@ app.post('/wallet/update', function(req: Request, res: Response){
         { 
         method: 'POST', 
         uri: apiUrl + '/wallet/update',
-        headers: {'X_SITE_API_KEY': req.get('X_SITE_API_KEY')},
+        headers: {'X-Site-Api-Key': req.get('X_SITE_API_KEY')},
         body: req.body,
         json: true
         }

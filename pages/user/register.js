@@ -28,11 +28,15 @@ const Register = () => {
     })
       .then(async(response) => {
         const data = await response.json();
-          if (data && data.error) {
+          if(typeof data.error === 'string')
+          setSignupError(data.error)
+        else
           Object.keys(data.error).map(key => 
-            setSignupError(data.error[key][0])
-            )
-          }
+            {
+              setSignupError(data.error[key][0])
+            }
+          )
+
           
           if (data && data.token) {
             //set cookie
@@ -47,7 +51,7 @@ const Register = () => {
   <div className="main">
     <div className="container ">
     <form onSubmit={handleSubmit}>
-      <h3>Registro</h3>
+      <h3>Register</h3>
 
       <div className="form-group">
           <label>Name</label>
@@ -81,10 +85,10 @@ const Register = () => {
           className="form-control" required placeholder="Email" />
       </div>
 
-      <button type='submit' className="btn btn-primary btn-block">Registro</button>
+      <button type='submit' className="btn btn-primary btn-block">Register</button>
       <br/>
       {signupError && <p className="text-center" style={{color: 'red'}}>{signupError}</p>}
-      
+
       <a href="/" className="card">
         <h3>Home &rarr;</h3>
       </a>
