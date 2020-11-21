@@ -10,7 +10,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to EPAYCO
+          Welcome to ePAYco
         </h1>
 
         <div className="grid">
