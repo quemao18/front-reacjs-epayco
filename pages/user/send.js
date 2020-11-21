@@ -134,7 +134,7 @@ const Balance = () => {
           className="form-control" required placeholder="Token" />
       </div>
 
-      <button type='button' onClick={handleTokenSubmit} className="btn btn-primary btn-block">Confirm</button>
+      <button type='button' disabled={!token} onClick={handleTokenSubmit} className="btn btn-primary btn-block">Confirm</button>
       <br/>
 
       {signupErrorToken && <p className="text-center" style={{color: 'red'}}>{signupErrorToken}</p>}
