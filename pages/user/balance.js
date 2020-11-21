@@ -32,6 +32,7 @@ const Balance = () => {
             setBalance('')
           }
 
+          if (!data.balance && !data.error) 
           setBalance('0')
           
 

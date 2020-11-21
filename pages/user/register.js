@@ -8,6 +8,8 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [document, setDocument] = useState('');
+  const [message, setMessage] = useState('');
+
 
   function handleSubmit(e) {
 
@@ -28,21 +30,27 @@ const Register = () => {
     })
       .then(async(response) => {
         const data = await response.json();
+        if(data && data.error){
+          setMessage('');
           if(typeof data.error === 'string')
-          setSignupError(data.error)
-        else
-          Object.keys(data.error).map(key => 
-            {
-              setSignupError(data.error[key][0])
-            }
-          )
+            setSignupError(data.error)
+          else
+            Object.keys(data.error).map(key => 
+              {
+                setSignupError(data.error[key][0])
+              }
+            )
+        }
 
           
-          if (data && data.token) {
-            //set cookie
-            localStorage.setItem('token', data.token);
-            Router.push('/');
-          }
+        if (data && data.token) {
+          //set cookie
+          console.log(data);
+          localStorage.setItem('token', data.token);
+          // Router.push('/');
+          setMessage('Register success');
+          setSignupError('');
+        }
 
       })
   }
@@ -88,6 +96,7 @@ const Register = () => {
       <button type='submit' className="btn btn-primary btn-block">Register</button>
       <br/>
       {signupError && <p className="text-center" style={{color: 'red'}}>{signupError}</p>}
+      {message && <p className="text-center" style={{color: 'green'}}>{message}</p>}
 
       <a href="/" className="card">
         <h3>Home &rarr;</h3>
